@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Boss from "../assets/boss-hog.png";
 import BabyHog from "./BabyHog";
-// import offspring from "../data.js"
+import offspring from "../data.js";
 
 function HogBoss() {
   const [eyeColor, setEyeColor] = useState("blue");
@@ -9,6 +9,10 @@ function HogBoss() {
   function handleChangeEyeColor(e) {
     setEyeColor(e.target.value);
   }
+
+  const babies = offspring.map((props) => (
+    <BabyHog eyeColor={eyeColor} hobby={props.hobby} name={props.name} />
+  ));
 
   return (
     <div>
@@ -39,11 +43,7 @@ function HogBoss() {
       <div id="boss-domicile">
         <img id="boss-blaster" src={Boss} alt="" />
       </div>
-      <ul className="hoglist">
-        <BabyHog />
-        <BabyHog />
-        <BabyHog />
-      </ul>
+      <ul className="hoglist">{babies}</ul>
     </div>
   );
 }
